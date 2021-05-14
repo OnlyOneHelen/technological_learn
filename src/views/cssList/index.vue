@@ -7,6 +7,10 @@
     <number-nine></number-nine>
     <number-eleven></number-eleven>
     <number-thirteen></number-thirteen>
+    <number-two></number-two>
+    <number-four></number-four>
+    <number-six></number-six>
+    <number-eight></number-eight>
   </div>
 </template>
 
@@ -18,7 +22,10 @@ import numberSeven from './7'
 import numberNine from './9'
 import numberEleven from './11'
 import numberThirteen from './13'
-
+import numberTwo from './2.vue'
+import numberFour from './4.vue'
+import numberSix from './6.vue'
+import numberEight from './8.vue'
 export default {
   data () {
     return {}
@@ -30,7 +37,16 @@ export default {
     numberSeven,
     numberNine,
     numberEleven,
-    numberThirteen
+    numberThirteen,
+    numberTwo,
+    numberFour,
+    numberSix,
+    numberEight
   }
 }
 </script>
+<style>
+    .about>div {
+        border: 1px solid #ccc;
+    }
+</style>
