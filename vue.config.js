@@ -6,3 +6,6 @@
  * @Description: In User Settings Edit
  * @FilePath: /technological_learn/vue.config.js
  */
+module.exports = {
+  lintOnSave: false
+}
