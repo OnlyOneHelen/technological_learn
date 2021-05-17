@@ -1,16 +1,18 @@
 <template>
   <div class="about">
     <number-one></number-one>
-    <number-three></number-three>
-    <number-five></number-five>
-    <number-seven></number-seven>
-    <number-nine></number-nine>
-    <number-eleven></number-eleven>
-    <number-thirteen></number-thirteen>
     <number-two></number-two>
+    <number-three></number-three>
     <number-four></number-four>
+    <number-five></number-five>
     <number-six></number-six>
+    <number-seven></number-seven>
     <number-eight></number-eight>
+    <number-nine></number-nine>
+    <number-ten></number-ten>
+    <number-eleven></number-eleven>
+    <number-twelve> </number-twelve>
+    <number-thirteen></number-thirteen>
     <number-fifteen></number-fifteen>
   </div>
 </template>
@@ -28,6 +30,8 @@ import numberFour from "./4.vue";
 import numberSix from "./6.vue";
 import numberEight from "./8.vue";
 import numberFifteen from "./15.vue";
+import numberTen from './10.vue';
+import numberTwelve from './12.vue';
 export default {
   data() {
     return {};
@@ -45,8 +49,10 @@ export default {
     numberSix,
     numberEight,
     numberFifteen,
-  },
-};
+    numberTen,
+    numberTwelve
+  }
+}
 </script>
 <style>
 .about > div {

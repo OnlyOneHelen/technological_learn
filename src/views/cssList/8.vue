@@ -1,5 +1,6 @@
 <template>
     <div>
+        <h1>8.css3 的一些新特性</h1>
         <div>(过渡)transition: css的属性, 花费时间, 效果曲线(默认ease), 延迟时间(默认0);<br/>
         例如: transition：width,.5s,ease,.2s</div>
         <div>(动画) animation：动画名称，一个周期花费时间，运动曲线（默认ease），动画延迟（默认0），播放次数（默认1），是否反向播放动画（默认normal），是否暂停动画（默认running）</div>

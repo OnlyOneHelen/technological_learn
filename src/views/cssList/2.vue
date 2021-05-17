@@ -1,5 +1,6 @@
 <template>
     <div>
+        <h1>2. 伪类和伪元素</h1>
         <div>伪类的定义是通过（选择器找到不存在与DOM树中的信息）以及（不能被常规css选择器获取到的信息） (css选择器)</div>
         <div><a class="link_a" href="www.baidu.com">32423432</a>（使用了伪类 link和visited 来控制是否访问过的样式）</div>
         <div>伪元素本质上是创建了一个有内容的虚拟容器</div>
