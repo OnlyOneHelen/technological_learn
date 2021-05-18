@@ -8,10 +8,10 @@
         <div>性能优化 避免多使用@import 因为外部的css导致页面在加载时增加额外的延迟</div>
         <div style="color: red">避免过分重排，浏览器重新渲染页面或者部分页面会重新计算元素的位置和结构叫做reflow
             例如，宽度 高度 边界 边框，布局 子图，隐藏会导致触发reflow 导致自节点和祖先节点重新渲染
-            <span> 
+            <span>
                 <br/>1.预先定义好class 改变dom的classname
                 <br/>2.动画元素使用绝对定位
-                <br/>3.尽量避免table布局 更改小的改动会导致table的重新布局 
+                <br/>3.尽量避免table布局 更改小的改动会导致table的重新布局
                 <br/>4.避免设置大量的style
                 <br/>5.减少css里面的计算表达式
             </span>

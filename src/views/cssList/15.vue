@@ -50,7 +50,7 @@
     在移动端使用rem
     </pre>
     <pre>
-  移动端适配： 弹性盒子，rem 
+  移动端适配： 弹性盒子，rem
    最小适配ipone
     5 320px 最大适配 iPhone 8 plus 750
    </pre
@@ -60,7 +60,7 @@
 </template>
 
 <script>
-export default {};
+export default {}
 </script>
 
 <style lang="scss" scoped>

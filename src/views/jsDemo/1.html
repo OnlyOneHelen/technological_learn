@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    function Person(name) {
+        this.name = name
+
+    }
+    Person.prototype.eat = function () {
+        console.log(eat)
+    }
+    const xiao = new Person('小')
+    console.log('xiao', xiao)
+    console.log('xiao', xiao.empty) // undefined 知道找到为null，还没有找到，就返回undefined
+    // 因为原型链的顶端 Object.prototype.__proto__ === null // true
+
+    console.log('Person1', Person)
+    console.log('Person2', Person.prototype.constructor === Person) // true  原型上的constructor构造器, 指向构造函数本身
+
+</script>
+
+</html>
