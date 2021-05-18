@@ -27,6 +27,13 @@
     console.log('Person1', Person)
     console.log('Person2', Person.prototype.constructor === Person) // true  原型上的constructor构造器, 指向构造函数本身
 
+// 实现instanceof 
+// 1. instanceof玩的是原型链，判断某个对象是否是构造函数上的实例，所以，传入的参数是对象才行
+// 2. 原型链就是当前对象的__proto 是否等于 构造函数的prototype 然后层层查找
+// 3. 如果不一致，会一直向上找。直到找到为止，找到返回true，找不到返回false.
+// function _instanceof () {
+//     const baseType=  ['string', 'number', 'boolean', '']
+// }
 </script>
 
 </html>
