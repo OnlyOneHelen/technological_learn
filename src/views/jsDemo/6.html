@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    // this指向demo
+
+    // 1. 在函数中直接使用
+    function getName(name) {
+        console.log('name', name)
+    }
+    getName('张三')
+    //当函数直接被调用，可以看做是  getName.call(window, '张三') 的语法糖，this指向window对象
+    // 2. 当函数作为对象的方法被调用
+    var person = {
+        name: '张三',
+        run: function (time) {
+            console.log(`${this.name}在跑步，跑了${time}分，不行了`)
+        }
+    }
+    person.run(20)
+    // person.run.call(person, 20) 语法糖
+
+    // demo
+    var name = 222
+    var a = {
+        name: 111,
+        say: function () {
+            console.log(this.name)
+        }
+    }
+    var fun = a.say
+    fun() // fun.call(window)  222
+    a.say() // a.say.call(a) // 111
+
+    var b = {
+        name: 333,
+        say: function (fun) {
+            fun()
+        }
+    }
+    b.say(a.say)
+    b.say = a.say
+    b.say() // 333
+    // 箭头函数this指向demo
+    // 1、独立函数,箭头函数在全局定义，this指向window
+    var aa = 11
+    var obj1 = () => {
+        var aa = 22
+        console.log('aa', this.aa) // 11
+    }
+    obj1()
+    // ------------------
+    // 2，对象的方法-> 指向window
+    var aaa = 11
+    var obj2 = {
+        aaa: 22,
+        bbb: () => {
+            console.log('aaa', this.aaa) //  箭头函数绑定父级的this，父级的this是window对象，所以这里输出11
+        }
+    }
+    obj2.bbb() // 11 
+
+    // ---------------
+    // 对象的方法-> 指向对象的上一层
+    var x = 0
+    function foox() {
+        var func = () => {
+            console.log(this.x)
+        }
+        return func
+    }
+    var objx = {
+        x: 12,
+        foox: foox
+    }
+    objx.foox()()  //12
+    // -----------------------------
+    // 3. 用作构造函数报错
+    var foo = () => {
+        console.log(this)
+    }
+    var boo = new foo()  //foo is not a constructor
+</script>
+
+</html>

@@ -18,23 +18,23 @@
 </template>
 
 <script>
-import numberOne from './1.vue'
-import numberThree from './3'
-import numberFive from './5.vue'
-import numberSeven from './7'
-import numberNine from './9'
-import numberEleven from './11'
-import numberThirteen from './13'
-import numberTwo from './2.vue'
-import numberFour from './4.vue'
-import numberSix from './6.vue'
-import numberEight from './8.vue'
-import numberFifteen from './15.vue'
-import numberTen from './10.vue'
-import numberTwelve from './12.vue'
+import numberOne from "./1.vue";
+import numberThree from "./3";
+import numberFive from "./5.vue";
+import numberSeven from "./7";
+import numberNine from "./9";
+import numberEleven from "./11";
+import numberThirteen from "./13";
+import numberTwo from "./2.vue";
+import numberFour from "./4.vue";
+import numberSix from "./6.vue";
+import numberEight from "./8.vue";
+import numberFifteen from "./15.vue";
+import numberTen from "./10.vue";
+import numberTwelve from "./12.vue";
 export default {
-  data () {
-    return {}
+  data() {
+    return {};
   },
   components: {
     numberOne,
@@ -50,9 +50,9 @@ export default {
     numberEight,
     numberFifteen,
     numberTen,
-    numberTwelve
-  }
-}
+    numberTwelve,
+  },
+};
 </script>
 <style>
 .about > div {
