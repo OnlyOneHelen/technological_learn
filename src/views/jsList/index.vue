@@ -5,6 +5,8 @@
     <number-three></number-three>
     <number-four></number-four>
     <number-eight></number-eight>
+    <number-six></number-six>
+    <number-seven></number-seven>
   </div>
 </template>
 
@@ -14,6 +16,8 @@ import numberTwo from "./2.vue";
 import numberThree from "./3.vue";
 import numberFour from "./4.vue";
 import numberEight from "./8.vue";
+import numberSix from "./6";
+import numberSeven from "./7";
 
 export default {
   data() {
@@ -24,7 +28,9 @@ export default {
     numberTwo,
     numberFour,
     numberThree,
-    numberEight
+    numberEight,
+    numberSix,
+    numberSeven,
   },
 };
 </script>

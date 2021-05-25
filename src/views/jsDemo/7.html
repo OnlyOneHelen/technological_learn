@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    for (var x = 0; x < 3; x++) {
+        setTimeout(() => {
+            console.log(x)  // 3 3 3
+        })
+    }
+    // setTimeout延迟执行，异步一定是在for运行完以后才打印console，此时i已经变成3了。
+
+    // 利用立即执行函数解决
+
+    for (var i = 0; i < 5; i++) {
+        (function (i) {  // 立即执行函数：这个匿名函数产生了闭包的效果，这个作用域接收到没没次循环的i保存下来了，即使循环结束，形成闭包的作用域也不会销毁
+            setTimeout(function () {
+                console.log(i);
+            });
+        })(i)
+    }
+
+    // let解决
+    for (let i = 0; i < 5; i++) {
+        setTimeout(function () {
+            console.log(i);
+        })
+    }
+    // let关键字劫持了for循环的块作用域，产生了类似闭包的效果。
+    // 并且在for循环中使用let来定义循环变量还会有一个特殊效果：
+    // 每一次循环都会重新声明变量i，随后的每个循环都会使用上一个循环结束时的值来初始化这个变量i。
+
+
+    // 匿名函数，不会发生函数声明提升。这不是跟let声明的道理一样么
+
+
+    // 代码解析
+    // var 在定时器中的表现
+//     var i=6
+// () => {
+//         console.log(i)
+//       }
+// () => {
+//         console.log(i)
+//       }
+// () => {
+//         console.log(i)
+//       }
+// () => {
+//         console.log(i)
+//       }
+// () => {
+//         console.log(i)
+//       }
+// () => {
+//         console.log(i)
+//       }
+
+// let 在定时器中表现
+// 由于let拥有作用域，那么他每一个i都有着自己对应的函数
+// () => {i=0
+//         console.log(i)
+//       }
+// () => {i=1
+//         console.log(i)
+//       }
+// () => {i=2
+//         console.log(i)
+//       }
+// () => {i=3
+//         console.log(i)
+//       }
+// () => {i=4
+//         console.log(i)
+//       }
+// () => {i=5
+//         console.log(i)
+//       }
+
+</script>
+
+</html>
