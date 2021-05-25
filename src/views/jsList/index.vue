@@ -1,20 +1,26 @@
 <template>
   <div class="about">
     <number-one></number-one>
+    <number-two></number-two>
+    <number-four></number-four>
   </div>
 </template>
 
 <script>
-import numberOne from './1.vue'
+import numberOne from "./1.vue";
+import numberTwo from "./2.vue";
+import numberFour from "./4.vue";
 
 export default {
-  data () {
-    return {}
+  data() {
+    return {};
   },
   components: {
-    numberOne
-  }
-}
+    numberOne,
+    numberTwo,
+    numberFour,
+  },
+};
 </script>
 <style>
 .about > div {

@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    // 原型链继承
+    // function Person() {
+    //     this.name = ['大头']
+
+    // }
+    // Person.prototype.getName = function () {
+    //     return this.name
+    // }
+    // function Son() {
+
+    // }
+    // Son.prototype = new Person()
+    // Son.prototype.constructor = Son
+    // let son1 = new Son()
+    // let son2 = new Son()
+    // son1.name[0] = '小头'
+    // console.log('son1', son1.name) // 小头 由于son1和son2执行同一个原型对象 ，所以只要一个改变，都会改变
+    // console.log('son2', son2.name)  // 小头
+
+    // 构造函数继承
+    // function Person(name) {
+    //     this.name = [name]
+
+    // }
+    // Person.prototype.getName = function () {
+    //     return this.name
+    // }
+    // function Son() {
+    //     Person.call(this, '大头')
+
+    // }
+    // let son1 = new Son()
+    // let son2 = new Son()
+    // son1.name[0] = '小头'
+    // console.log('son1', son1.name) // 小头 
+    // console.log('son2', son2.name)  // 大头
+    // console.log(son1.getName()) //  构造函数继承不能继承实例对象的方法 son1.getName is not a function
+    //    组合继承
+    // function Person(name) {
+    //     this.name = [name]
+
+    // }
+    // Person.prototype.getName = function () {
+    //     return this.name
+    // }
+    // function Son() {
+    //     Person.call(this, '大头')
+
+    // }
+    // Son.prototype = new Person()  //  缺点，继承的时候，实例化一次
+    // let son1 = new Son() // 自己实例化一次 。总共实例化两次
+    // let son2 = new Son()
+    // son1.name[0] = '小头'
+    // console.log('son1', son1.name) // 小头  构造函数继承，继承实例对象的属性
+    // console.log('son2', son2.name)  // 大头 构造函数继承，继承实例对象的属性
+    // console.log(son1.getName()) // 小头 原型链继承，继承实例对象的方法
+
+    //    寄生继承
+    // function Person(name) {
+    //     this.name = [name]
+
+    // }
+    // Person.prototype.getName = function () {
+    //     return this.name
+    // }
+    // function Son() {
+    //     Person.call(this, '大头')
+
+    // }
+    // // Son.prototype = new Person()  缺点，继承的时候，实例化一次。不想每次都new Person，但是还想用到prototype方法
+    // Son.prototype = Person.prototype  //  优点：不用实例化对象。缺点： 对子类原型的操作，势必会影响父类
+    // let son1 = new Son() // 
+    // let son2 = new Son()
+    // let person = new Person('小米')
+    // son1.name[0] = '小头'
+    // console.log('son1', son1.name) // 小头  构造函数继承，继承实例对象的属性
+    // console.log('son2', son2.name)  // 大头 构造函数继承，继承实例对象的属性
+    // console.log(son1.getName()) // 小头 原型链继承，继承实例对象的方法
+    // 终结版
+    // function Person(name) {
+    //     this.name = [name]
+
+    // }
+    // Person.prototype.getName = function () {
+    //     return this.name
+    // }
+    // function Son() {
+    //     Person.call(this, '大头')
+
+    // }
+    // // Son.prototype = new Person()  缺点，继承的时候，实例化一次。不想每次都new Person，但是还想用到prototype方法
+    // // Son.prototype = Person.prototype  //  优点：不用实例化对象。缺点： 对子类原型的操作，势必会影响父类
+    // Son.prototype = Object.create(Person.prototype) // Object.create 
+    // //   方法创建一个新对象，使用现有的对象来提供新创建的对象的__proto__
+    // let son1 = new Son() // 
+    // let son2 = new Son()
+    // son1.name[0] = '小头'
+    // console.log('son1', son1.name) // 小头  构造函数继承，继承实例对象的属性
+    // console.log('son2', son2.name)  // 大头 构造函数继承，继承实例对象的属性
+    // console.log(son1.getName()) // 小头 原型链继承，继承实例对象的方法
+    // es6 中class实现继承
+    class Person {
+        constructor(name) {
+            this.name = name
+        }
+        commonMethods() {
+            console.log('我是共享方法');
+        }
+    }
+
+    class Student extends Person {
+        constructor(name, score) {
+            super(name)
+            this.score = score
+        }
+        printScore() {
+            console.log('This is printScore');
+        }
+    }
+    let stu = new Student('小红', 1);
+    let person = new Person('小紫');
+    console.log(stu.commonMethods === person.commonMethods);//true
+    console.log('stu', stu)
+
+</script>
+
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    // 闭包
+
+    function a() {
+        var aa = 111
+        function b() {
+            console.log(aa)  // 111
+        }
+        return b
+    }
+    var res = a()
+    res()
+    // 分析：  在执行a的前期，会进行预编译 
+    /*
+    a执行前期
+    AO:{
+      aa: undefined
+      b:function
+    }
+    
+     b执行前会访问到上一层AO
+    AO:{
+      aa: undefined
+      b:function
+    }
+    
+    a函数执行完毕，销毁。但是b函数依然能访问到A，所以a函数里面定义的变量不会销毁。
+    */
+</script>
+
+</html>
