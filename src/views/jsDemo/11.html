@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>柯里化</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    // 原始demo
+    function add(x, y, z) {
+        return x + y + z
+    }
+    console.log(add(1, 2, 3))  // 6 
+    // 那使用柯里化之后是啥样呢
+    function a(x) {
+        return function b(y) {
+            return function c(z) {
+                return x + y + z
+            }
+        }
+    }
+    console.log(a(1)(2)(3)) // 6
+    // 但是柯里化也有弊端： m每个function会产生一个单独的作用域，会在调用栈中占据内存
+
+    // 对比两个函数，就会发现，柯里化就是把之前传入多个参数的函数。拆分成多个函数，每个函数传入少量参数
+    // 作用demo
+    // 那这样，也就应征了他的作用，
+    // 函数复用:function a 里面传的参数，一直不变，那我直接用即可。
+    // 每次调用函数是，只接受一部分参数,并且返回一个函数(提前返回)，直到(延迟)传递完所有参数，开始执行
+
+    // 比如bind就是延迟执行
+
+    // 那怎么实现一个柯里化呢？
+    // 重点是传递完所有参数，那传入函数参数的长度 通过fn.length获取
+    // 如果没有传递完参数，那么返回一个函数，接着获取传入的参数 (..._args) => curr(fn, ...args, ..._args)
+    // 当获取完传递的参数(fn.length === args.length)，才执行当前函数 fn(...args)
+    const curr = (fn, ...args) => fn.length === args.length ? fn(...args) : (..._args) => curr(fn, ...args, ..._args)
+    // demo
+    function currAdd(x, y, z) {
+        return x + y + z
+    }
+    const addSum = curr(currAdd)
+    console.log('柯里化', addSum(1, 2, 3)) // 6
+    console.log('柯里化', addSum(1)(2)(3)) // 6
+    console.log('柯里化', addSum(1, 2)(3)) // 6
+
+
+    // 再来看一个参数复用的demo
+    function url_curr(protocol) {
+        return function (hostname, pathname) {
+            return `${protocol}${hostname}${pathname}`
+        }
+    }
+    const url_http = url_curr('https://')  //参数复用
+    const url1 = url_http('www.baidu', '/界面')
+    const url2 = url_http('www.头条', '/首页')
+    console.log('url1', url1)
+    console.log('url2', url2)
+</script>
+
+</html>
