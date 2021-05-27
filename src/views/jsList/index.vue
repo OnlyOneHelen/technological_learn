@@ -7,6 +7,7 @@
     <number-eight></number-eight>
     <number-six></number-six>
     <number-seven></number-seven>
+    <number-nine></number-nine>
   </div>
 </template>
 
@@ -18,6 +19,7 @@ import numberFour from "./4.vue";
 import numberEight from "./8.vue";
 import numberSix from "./6";
 import numberSeven from "./7";
+import numberNine from './9.vue'
 
 export default {
   data() {
@@ -31,6 +33,7 @@ export default {
     numberEight,
     numberSix,
     numberSeven,
+    numberNine
   },
 };
 </script>
