@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    const Pending = 'Pending'
+    const Fulfilled = 'Fulfilled'
+    const Rejected = 'Rejected'
+    class _Promise {
+        constructor(executor) {
+            this.state = Pending
+            this.value = undefined
+            this.reason = undefined
+            this.onFulfilledCallbacks = []
+            this.onRejectedCallbacks = []
+            let resolve = (value) => {
+                if (this.state === Pending) {
+                    this.state = Fulfilled
+                    this.value = value
+                    // 依次将对应的函数执行
+                    this.onFulfilledCallbacks.forEach(fn => fn())
+                }
+
+            }
+            let reject = (reason) => {
+                if (this.state === Pending) {
+                    this.state = Rejected
+                    this.value = reason
+                    // 依次将对应的函数执行
+                    this.onRejectedCallbacks.forEach(fn => fn())
+
+                }
+            }
+            try {
+                executor(resolve, reject)
+            } catch (error) {
+                reject(error)
+
+            }
+        }
+        then(onFulfilled, onRejected) {
+            if (this.state === Fulfilled) {
+                onFulfilled(this.value)
+            }
+            if (this.state === Rejected) {
+                onRejected(this.reason)
+            }
+            // 如果状态是pending，依次将成功和失败的回调保存起来，
+            if (this.state === Pending) {
+                this.onFulfilledCallbacks.push(() => {
+                    onFulfilled(this.value)
+                })
+                this.onRejectedCallbacks.push(() => {
+                    onRejected(this.reason)
+                })
+                //在 then 方法中，并没有往队列中直接插入回调函数, 而是使用函数包装后再 push，是为了方便后续扩展 
+                // ( eg：获取并处理 onFulfilled() 的返回值)
+            }
+        }
+    }
+    const promise = new _Promise((resolve, reject) => {
+        setTimeout(() => {
+            resolve('success')
+
+        }, 2000)
+    }).then((res) => {
+        console.log('成功', res)
+    })
+    // 基本promise和异步调用实现了,接下来实现，链式调用和值的穿透。见16.2.html
+
+</script>
+
+</html>

@@ -10,6 +10,8 @@
     <number-nine></number-nine>
     <number-eleven></number-eleven>
     <number-twelve> </number-twelve>
+    <number-fifteen></number-fifteen>
+    <number-sixteen></number-sixteen>
   </div>
 </template>
 
@@ -21,9 +23,11 @@ import numberFour from "./4.vue";
 import numberEight from "./8.vue";
 import numberSix from "./6";
 import numberSeven from "./7";
-import numberNine from './9.vue'
+import numberNine from "./9.vue";
 import numberEleven from "./11";
 import numberTwelve from "./12";
+import numberFifteen from "./15.vue";
+import numberSixteen from "./16.vue";
 
 export default {
   data() {
@@ -40,6 +44,8 @@ export default {
     numberNine,
     numberEleven,
     numberTwelve,
+    numberFifteen,
+    numberSixteen,
   },
 };
 </script>

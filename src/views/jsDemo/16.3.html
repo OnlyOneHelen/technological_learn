@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Promise1</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    //   静态方法是那通过 Promise 来调用，而不是通过实例 promise 来调用的方法
+    // ...
+    // 成功状态
+    // class Promise {
+    //     static resolve(value) {
+    //         return new Promise((resolve, reject) => {
+    //             resolve(value)
+    //         })
+    //     }
+    //     // 失败状态
+    //     static reject(reason) {
+    //         return new Promise((resolve, reject) => {
+    //             reject(reason)
+    //         })
+    //     }
+    // }
+    // promise.all 是解决并发问题的，多个异步并发获取最终的结果
+    // Promise.all(iterable) 方法返回一个 Promise 实例，此实例在 iterable 参数内所有的 
+    // promise 都“完成（resolved）”或参数中不包含 promise 时回调完成（resolve）；
+    // 如果参数中 promise 有一个失败（rejected），此实例回调失败（reject），失败原因的是第一个失败 promise 的结果。
+    function promiseAll(promiseArr) {
+
+        return new Promise((resolve, reject) => {
+
+            // promise.all接收一个数组
+            if (!Array.isArray(promiseArr)) {
+                return reject(new Error('请传入数组'))
+            }
+            let res = new Array(promiseArr.length) // 存储返回的结果
+            let count = 0  // 存储传入参数的位置
+            // 循环传入每一项，并且resolve
+            let promiseNum = promiseArr.length
+
+            for (let i = 0; i < promiseNum; i++) {
+                // 此处可以判断，传入的参数，是否是promise。更简单的直接使用 Promise.resolve() 会自动将传入的参数，当做promise 来处理
+                Promise.resolve(promiseArr[i]).then(value => {
+                    count++ // 引用计数，避免数组出现的坑 
+                    // res.push(value) 保证不了输出顺序
+                    res[i] = value // 用索引，能保证输出顺序
+                    // console.log('参数', value)
+                    if (count === promiseNum) {  // 当所有函数都正确执行了，resolve输出返回结果
+                        resolve(res)
+                    }
+                }).catch(e => {
+                    reject(e) // 只要有任何 Promise 出现 reject， Promise._all 就直接 reject
+                })
+            }
+
+        })
+    }
+    function promiseRace(arr) {
+
+        return new Promise((resolve, reject) => {
+            if (!Array.isArray(arr)) { return reject(new Error('请传入数组')) }
+            let res = new Array(arr.length)
+            let count = 0
+            let arrlen = arr.length
+            for (let i = 0; i < arrlen; i++) {
+                Promise.resolve(arr[i]).then((val) => {
+                    console.log('参数', val)
+                    resolve(val) // 状态只能变一次，所以执行完一个，后面的不执行了
+                }).catch(e => {
+                    reject(e)
+                })
+            }
+        })
+    }
+
+    //    测试promise.all
+
+    let promise1 = new Promise(function (resolve) {
+        setTimeout(() => {
+            resolve(1);
+        }, 2000)
+    });
+    let promise2 = new Promise(function (resolve) {
+        setTimeout(() => {
+            resolve(2);
+        }, 1000)
+    });
+    let promise3 = new Promise(function (resolve) {
+        setTimeout(() => {
+            resolve(3);
+        }, 3000)
+    });
+
+    promiseAll([promise1, promise2, promise3]).then(function (res) {
+        console.log('res', res); // 三秒后，按顺序输出 [1,2,3]
+    })
+    promiseRace([promise1, promise2, promise3]).then(function (res) {
+        console.log('res', res); // 三秒后，按顺序输出 [1,2,3]
+    })
+
+
+
+</script>
+
+</html>
